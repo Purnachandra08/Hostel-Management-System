@@ -1,0 +1,24 @@
+<aside class="sidebar">
+  <div class="profile">
+    <div class="avatar">👤</div>
+    <div class="meta">
+      <div class="role">{{ auth.getRole() || 'Guest' }}</div>
+      <div><button (click)="logout()">Logout</button>
+</div>
+    </div>
+  </div>
+
+  <ul class="menu">
+    <li *ngIf="auth.getRole() === 'STUDENT'"><a routerLink="/student">My Dashboard</a></li>
+    <li *ngIf="auth.getRole() === 'STUDENT'"><a routerLink="/student/apply-leave">Apply Leave</a></li>
+    <li *ngIf="auth.getRole() === 'STUDENT'"><a routerLink="/student/complaints">Complaints</a></li>
+
+    <li *ngIf="auth.getRole() === 'WARDEN'"><a routerLink="/warden">Warden Dashboard</a></li>
+    <li *ngIf="auth.getRole() === 'WARDEN'"><a routerLink="/warden/mark-attendance">Mark Attendance</a></li>
+    <li *ngIf="auth.getRole() === 'WARDEN'"><a routerLink="/warden/leave-approval">Leave Approval</a></li>
+
+    <li *ngIf="auth.getRole() === 'ADMIN'"><a routerLink="/admin">Admin Dashboard</a></li>
+    <li *ngIf="auth.getRole() === 'ADMIN'"><a routerLink="/admin/manage-rooms">Manage Rooms</a></li>
+    <li *ngIf="auth.getRole() === 'ADMIN'"><a routerLink="/admin/manage-students">Manage Students</a></li>
+  </ul>
+</aside>

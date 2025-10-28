@@ -1,0 +1,30 @@
+<div class="dashboard-container">
+  <h2>Welcome, {{ studentName }} 👋</h2>
+
+  <div class="card-grid">
+    <a routerLink="/student/apply-leave" class="card">
+      <h3>📅 Apply for Leave</h3>
+      <p>Submit a new leave request and track approval status.</p>
+    </a>
+
+    <a routerLink="/student/complaints" class="card">
+      <h3>📝 Lodge a Complaint</h3>
+      <p>Raise a complaint and get updates from your warden/admin.</p>
+    </a>
+
+    <a routerLink="/student/profile" class="card">
+      <h3>👤 View Profile</h3>
+      <p>Check your personal info, room details, and payment history.</p>
+    </a>
+  </div>
+
+  <div class="notifications">
+    <h3>🔔 Recent Notifications</h3>
+    <ul>
+      <li *ngFor="let note of notifications">
+        <strong>{{ note.message }}</strong>
+        <span>{{ note.date }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

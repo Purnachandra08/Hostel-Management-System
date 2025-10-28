@@ -1,0 +1,77 @@
+.warden-dashboard {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.summary {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.card {
+  flex: 1 1 250px;
+  color: #fff;
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 40px;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.info p {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 5px 0 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #16a085, #1abc9c);
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, #149174, #117a65);
+  transform: translateY(-3px);
+}

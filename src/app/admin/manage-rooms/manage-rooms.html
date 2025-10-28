@@ -1,0 +1,45 @@
+<div class="rooms-container">
+  <h1>🏨 Manage Rooms</h1>
+  <p class="subtitle">Add, view, and manage hostel rooms efficiently.</p>
+
+  <!-- Add Room Form -->
+  <div class="add-room-form">
+    <h2>Add New Room</h2>
+    <div class="form-fields">
+      <input type="text" [(ngModel)]="newRoom.number" placeholder="Room Number" />
+      <input type="number" [(ngModel)]="newRoom.capacity" placeholder="Capacity" />
+      <button (click)="addRoom()">Add Room</button>
+    </div>
+  </div>
+
+  <!-- Room List -->
+  <div class="rooms-list">
+    <h2>Existing Rooms</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Room No.</th>
+          <th>Capacity</th>
+          <th>Occupied</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let room of rooms; let i = index">
+          <td>{{ room.number }}</td>
+          <td>{{ room.capacity }}</td>
+          <td>{{ room.occupied }}</td>
+          <td>
+            <span class="status" [class.full]="room.occupied === room.capacity">
+              {{ room.occupied === room.capacity ? 'Full' : 'Available' }}
+            </span>
+          </td>
+          <td>
+            <button class="delete" (click)="deleteRoom(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

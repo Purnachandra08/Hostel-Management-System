@@ -1,0 +1,39 @@
+<div class="attendance-container">
+  <h2>📋 Mark Attendance</h2>
+  <p class="sub-title">Warden can mark attendance for all hostel students</p>
+
+  <table class="attendance-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Student Name</th>
+        <th>Room No</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.roomNo }}</td>
+        <td>
+          <span [ngClass]="{
+            present: student.status === 'Present',
+            absent: student.status === 'Absent',
+            pending: student.status === 'Pending'
+          }">
+            {{ student.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn present" (click)="markAttendance(student, 'Present')">Present</button>
+          <button class="btn absent" (click)="markAttendance(student, 'Absent')">Absent</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="submit-btn" (click)="submitAttendance()">Submit Attendance</button>
+</div>

@@ -1,0 +1,23 @@
+<div class="auth-card">
+  <h2>Login</h2>
+  <form (ngSubmit)="onSubmit()">
+    <label>Role</label>
+    <select [(ngModel)]="model.role" name="role">
+      <option value="STUDENT">Student</option>
+      <option value="WARDEN">Warden</option>
+      <option value="ADMIN">Admin</option>
+    </select>
+
+    <label>Email</label>
+    <input type="email" [(ngModel)]="model.email" name="email" required />
+
+    <label>Password</label>
+    <input type="password" [(ngModel)]="model.password" name="password" required />
+
+    <button type="submit">Login</button>
+    <div class="footer-links">
+      <a routerLink="/register">Create account</a>
+      <a routerLink="/landing">Back to Home</a>
+    </div>
+  </form>
+</div>

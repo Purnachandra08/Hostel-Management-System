@@ -1,0 +1,41 @@
+<div class="leave-approval-container">
+  <h2>Leave Approval Dashboard</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Student Name</th>
+        <th>Reason</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of leaveRequests">
+        <td>{{ request.id }}</td>
+        <td>{{ request.studentName }}</td>
+        <td>{{ request.reason }}</td>
+        <td>{{ request.date }}</td>
+        <td>
+          <span [ngClass]="{
+            'status-approved': request.status === 'Approved',
+            'status-rejected': request.status === 'Rejected',
+            'status-pending': request.status === 'Pending'
+          }">
+            {{ request.status }}
+          </span>
+        </td>
+        <td>
+          <button class="approve-btn" (click)="approveLeave(request)" [disabled]="request.status !== 'Pending'">
+            Approve
+          </button>
+          <button class="reject-btn" (click)="rejectLeave(request)" [disabled]="request.status !== 'Pending'">
+            Reject
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

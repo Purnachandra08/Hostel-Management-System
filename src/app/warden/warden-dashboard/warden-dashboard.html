@@ -1,0 +1,19 @@
+<div class="warden-dashboard">
+  <h2>Welcome, {{ wardenName }} 👋</h2>
+
+  <div class="summary">
+    <div class="card" *ngFor="let card of summaryCards" [style.background]="card.color">
+      <div class="icon">{{ card.icon }}</div>
+      <div class="info">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.value }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a routerLink="/warden/mark-attendance" class="action-btn">📋 Mark Attendance</a>
+    <a routerLink="/warden/leave-approval" class="action-btn">✅ Approve Leaves</a>
+    <a routerLink="/warden/complaints" class="action-btn">🧾 View Complaints</a>
+  </div>
+</div>

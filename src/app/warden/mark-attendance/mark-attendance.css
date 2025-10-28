@@ -1,0 +1,97 @@
+.attendance-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.sub-title {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+.attendance-table th, .attendance-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.attendance-table th {
+  background-color: #16a085;
+  color: white;
+  font-size: 15px;
+}
+
+.present {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.absent {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.pending {
+  color: #f39c12;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: 0.3s;
+}
+
+.btn.present {
+  background-color: #2ecc71;
+}
+
+.btn.absent {
+  background-color: #e74c3c;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #16a085, #1abc9c);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #149174, #117a65);
+}
