@@ -1,0 +1,116 @@
+/* 🌿 General Page Layout */
+.register-container {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #d7f9e9, #b2f2bb, #c3fae8);
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 🌿 Card Style */
+.register-container form {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+.register-container form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 128, 96, 0.15);
+}
+
+/* 🌿 Title */
+.register-container h2 {
+  color: #007f5f;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* 🌿 Inputs */
+.register-container input,
+.register-container select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 2px solid #c3fae8;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  background-color: #f9fffb;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-container input:focus,
+.register-container select:focus {
+  border-color: #38b000;
+  box-shadow: 0 0 8px rgba(56, 176, 0, 0.3);
+}
+
+/* 🌿 Button */
+.register-container button {
+  width: 100%;
+  background: linear-gradient(135deg, #38b000, #70e000);
+  color: white;
+  padding: 12px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.register-container button:hover {
+  background: linear-gradient(135deg, #2d6a4f, #52b788);
+  transform: scale(1.03);
+}
+
+/* 🌿 Messages */
+.message.success {
+  color: #2d6a4f;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.message.error {
+  color: #d00000;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* 🌿 Login Link */
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-text {
+  color: #007f5f;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.login-text:hover {
+  color: #1b4332;
+  text-decoration: underline;
+}
+
+/* 🌿 Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

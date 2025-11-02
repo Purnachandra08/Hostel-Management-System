@@ -1,19 +1,10 @@
-<app-navbar></app-navbar>
+<!-- ✅ app.html -->
+<main class="content-area">
+  <!-- Router area -->
+  <router-outlet></router-outlet>
+</main>
 
-<div class="main-wrapper">
-  <!-- Show sidebar only when logged in -->
-  <ng-container *ngIf="auth.isLoggedIn(); else landingOnly">
-    <app-sidebar></app-sidebar>
-    <main class="content-area">
-      <router-outlet></router-outlet>
-    </main>
-  </ng-container>
-
-  <ng-template #landingOnly>
-    <main class="content-area fullwidth">
-      <router-outlet></router-outlet>
-    </main>
-  </ng-template>
+<!-- ✅ Backend connection test -->
+<div class="backend-test" style="text-align:center; margin: 20px;">
+  <h3>{{ message }}</h3>
 </div>
-
-<app-footer></app-footer>

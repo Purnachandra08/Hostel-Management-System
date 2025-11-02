@@ -1,97 +1,181 @@
+/* 🌿 General Layout */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f0fff4, #e6fffa);
+  margin: 0;
+  padding: 0;
+  color: #2d3748;
+}
+
+/* 🌿 Navbar */
+.navbar {
+  background-color: #2f855a;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #c6f6d5;
+}
+
+/* 🌿 Attendance Container */
 .attendance-container {
-  max-width: 900px;
+  background-color: white;
+  max-width: 1000px;
   margin: 40px auto;
-  padding: 25px;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.attendance-container h2 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  font-size: 26px;
-  font-weight: 700;
+  color: #2f855a;
+  margin-bottom: 20px;
 }
 
-.sub-title {
-  text-align: center;
-  color: #7f8c8d;
-  margin-bottom: 25px;
-  font-size: 15px;
-}
-
+/* 🌿 Table Styling */
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 25px;
+  margin-top: 15px;
+  font-size: 15px;
 }
 
-.attendance-table th, .attendance-table td {
-  border: 1px solid #ddd;
+.attendance-table th {
+  background-color: #68d391;
+  color: white;
   padding: 12px;
   text-align: center;
 }
 
-.attendance-table th {
-  background-color: #16a085;
-  color: white;
-  font-size: 15px;
+.attendance-table td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px;
+  text-align: center;
 }
 
-.present {
-  color: #2ecc71;
-  font-weight: bold;
+.attendance-table tr:hover {
+  background-color: #f0fff4;
 }
 
-.absent {
-  color: #e74c3c;
-  font-weight: bold;
-}
-
-.pending {
-  color: #f39c12;
-  font-weight: bold;
-}
-
-.btn {
-  padding: 8px 12px;
+/* 🌿 Buttons */
+.btn,
+.present-btn,
+.absent-btn,
+.submit-btn {
+  padding: 7px 14px;
   border: none;
-  border-radius: 6px;
-  color: #fff;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
-  margin: 0 5px;
-  transition: 0.3s;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.btn.present {
-  background-color: #2ecc71;
+.present-btn {
+  background-color: #48bb78;
+  color: white;
 }
 
-.btn.absent {
-  background-color: #e74c3c;
-}
-
-.btn:hover {
-  opacity: 0.8;
+.absent-btn {
+  background-color: #f56565;
+  color: white;
+  margin-left: 6px;
 }
 
 .submit-btn {
-  display: block;
-  margin: 0 auto;
-  padding: 12px 25px;
-  background: linear-gradient(135deg, #16a085, #1abc9c);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
+  background-color: #2b6cb0;
+  color: white;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+.present-btn:hover {
+  background-color: #38a169;
+}
+
+.absent-btn:hover {
+  background-color: #e53e3e;
 }
 
 .submit-btn:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, #149174, #117a65);
+  background-color: #2c5282;
+}
+
+/* 🌿 Status Colors */
+.present {
+  color: #2f855a;
+  font-weight: 600;
+}
+
+.absent {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+/* 🌿 Alerts */
+.alert {
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.alert.success {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.alert.error {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
+
+/* 🌿 Submit Section */
+.submit-section {
+  text-align: center;
+  margin-top: 25px;
+}
+
+/* 🌿 Footer */
+.footer {
+  background-color: #2f855a;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.no-data {
+  text-align: center;
+  color: #555;
+  font-style: italic;
 }

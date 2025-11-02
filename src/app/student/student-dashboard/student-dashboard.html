@@ -1,5 +1,21 @@
+<!-- 🌿 Navbar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="logo">🏨 Hostel Management</div>
+    <div class="nav-links">
+      <a routerLink="/student" class="nav-btn">Dashboard</a>
+      <a routerLink="/student/book-room" class="nav-btn">Book Room</a>
+      <a routerLink="/student/apply-leave" class="nav-btn">Apply Leave</a>
+      <a routerLink="/student/complaints" class="nav-btn">Complaints</a>
+      <a routerLink="/student/view-profile" class="nav-btn">Profile</a> <!-- ✅ fixed -->
+    </div>
+    <button class="nav-btn logout" (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<!-- 🌿 Dashboard Section -->
 <div class="dashboard-container">
-  <h2>Welcome, {{ studentName }} 👋</h2>
+  <h2 class="welcome">Welcome, {{ studentName }} 👋</h2>
 
   <div class="card-grid">
     <a routerLink="/student/apply-leave" class="card">
@@ -12,9 +28,14 @@
       <p>Raise a complaint and get updates from your warden/admin.</p>
     </a>
 
-    <a routerLink="/student/profile" class="card">
+    <a routerLink="/student/view-profile" class="card"> <!-- ✅ fixed -->
       <h3>👤 View Profile</h3>
       <p>Check your personal info, room details, and payment history.</p>
+    </a>
+
+    <a routerLink="/student/book-room" class="card">
+      <h3>🏠 Book Room</h3>
+      <p>Reserve your hostel room quickly and easily.</p>
     </a>
   </div>
 
@@ -28,3 +49,8 @@
     </ul>
   </div>
 </div>
+
+<!-- 🌿 Footer -->
+<footer class="footer">
+  <p>© 2025 Hostel Management System | All Rights Reserved</p>
+</footer>

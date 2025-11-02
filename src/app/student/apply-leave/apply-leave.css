@@ -1,54 +1,101 @@
+/* ====== General ====== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #f4fff7, #d9f8e3, #b9f0cc);
+  color: #1e2a23;
+  overflow-x: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* ====== Navbar ====== */
+.navbar {
+  position: fixed;
+  top: 0; width: 100%;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  animation: slideDown 0.8s ease;
+}
+
+.navbar-container {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 60px;
+}
+
+.logo {
+  font-size: 1.8rem; font-weight: 600; color: #28a745; letter-spacing: 1px;
+  animation: fadeUp 1s ease;
+}
+
+.nav-links { display: flex; gap: 20px; }
+
+.nav-btn {
+  text-decoration: none; font-size: 1rem; font-weight: 500;
+  padding: 10px 24px; border-radius: 25px;
+  color: #166534; transition: all 0.3s ease; cursor: pointer;
+}
+.nav-btn:hover { background: #eafff2; transform: translateY(-2px); }
+.nav-btn.active {
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: #fff; box-shadow: 0 3px 10px rgba(34,197,94,0.4);
+}
+
+/* ====== Apply Leave Form ====== */
 .apply-leave-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 120px; padding: 40px 10%;
+  background: rgba(255,255,255,0.85);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(34,197,94,0.2);
+  max-width: 700px; margin-left: auto; margin-right: auto;
+  animation: fadeUp 1s ease;
 }
 
-h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 25px;
-  font-size: 24px;
+.apply-leave-container h2 {
+  text-align: center; font-size: 2rem; color: #166534;
+  margin-bottom: 30px; animation: textGlow 2s infinite alternate;
 }
 
-.form-group {
-  margin-bottom: 18px;
+.leave-form .form-group { margin-bottom: 20px; }
+.leave-form label {
+  display: block; font-weight: 600; color: #14532d; margin-bottom: 6px;
+}
+.leave-form input, .leave-form select, .leave-form textarea {
+  width: 100%; padding: 12px;
+  border: 2px solid #a7f3d0; border-radius: 10px;
+  background: #fff; font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.leave-form input:focus, .leave-form select:focus, .leave-form textarea:focus {
+  border-color: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.3); outline: none;
 }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #34495e;
+.submit-btn {
+  width: 100%; background: linear-gradient(135deg, #4ade80, #16a34a);
+  color: #fff; padding: 14px 0; border: none; border-radius: 12px;
+  font-size: 1.1rem; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(34,197,94,0.3);
+  transition: all 0.3s ease;
+}
+.submit-btn:hover {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  transform: translateY(-2px);
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #bdc3c7;
-  font-size: 14px;
+/* ====== Footer ====== */
+.footer {
+  background: rgba(255,255,255,0.9);
+  color: #14532d; text-align: center; padding: 15px;
+  position: fixed; bottom: 0; width: 100%;
+  box-shadow: 0 -3px 12px rgba(0,0,0,0.08);
+  font-size: 0.9rem; backdrop-filter: blur(10px);
+  animation: slideUp 1s ease;
 }
 
-textarea {
-  resize: none;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background: linear-gradient(90deg, #3498db, #2980b9);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #2980b9, #1c598a);
-}
+/* ====== Animations ====== */
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+@keyframes fadeUp { from{opacity:0; transform:translateY(40px);} to{opacity:1; transform:translateY(0);} }
+@keyframes slideDown { from{transform:translateY(-80px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+@keyframes slideUp { from{transform:translateY(60px); opacity:0;} to{transform:translateY(0); opacity:1;} }
+@keyframes textGlow { from{text-shadow:0 0 10px #4ade80;} to{text-shadow:0 0 20px #22c55e;} }

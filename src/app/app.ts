@@ -1,18 +1,33 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Navbar } from './shared/navbar/navbar';
-import { Sidebar } from './shared/sidebar/sidebar';
-import { Footer } from './shared/footer/footer';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Auth } from './services/auth';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterOutlet } from '@angular/router';
+import { User } from './services/user';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Sidebar, Footer, CommonModule],
+  imports: [CommonModule, HttpClientModule, RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class App {
-  constructor(public auth: Auth) {} // public so template can use auth
+export class App implements OnInit {
+  users: any[] = [];
+  message = '';
+
+  constructor(private userService: User) {}
+
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+        this.message = '✅ Connected to backend successfully!';
+        console.log('Users:', data);
+      },
+      error: (err) => {
+        console.error('❌ Backend Error:', err);
+        this.message = '❌ Failed to connect to backend';
+      }
+    });
+  }
 }

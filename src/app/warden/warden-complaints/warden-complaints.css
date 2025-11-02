@@ -8,6 +8,12 @@ body {
   animation: fadeIn 1s ease-in-out;
 }
 
+.warden-complaints-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* 🌿 Navbar */
 .navbar {
   position: fixed;
@@ -23,7 +29,7 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.nav-logo {
+.navbar .logo {
   font-size: 1.6rem;
   font-weight: 600;
   color: #22c55e;
@@ -51,100 +57,69 @@ body {
   color: #fff;
 }
 
-/* 🌿 Main Attendance Container */
-.attendance-container {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
-  max-width: 1000px;
-  margin: 140px auto 80px;
-  padding: 30px 40px;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.15);
+.logout-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff !important;
+}
+
+/* 🌿 Main Content */
+.content {
+  margin-top: 110px;
+  padding: 40px 8%;
+  text-align: center;
   animation: fadeUp 1s ease;
 }
 
-.attendance-container h2 {
-  text-align: center;
+.content h2 {
   font-size: 2.2rem;
   color: #166534;
   animation: textGlow 2s infinite alternate;
 }
 
-/* 🌿 Loading and Alerts */
-.loading {
-  text-align: center;
-  color: #14532d;
-  font-weight: 500;
-}
-
-.alert {
-  margin: 10px auto;
-  padding: 12px 18px;
-  border-radius: 25px;
-  text-align: center;
-  font-weight: 500;
-  width: fit-content;
-  animation: fadeIn 0.6s ease;
-}
-
-.alert.success {
-  background: #16a34a;
-  color: #fff;
-}
-
-.alert.error {
-  background: #dc2626;
-  color: #fff;
+.content p {
+  color: #374151;
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
 /* 🌿 Table */
-.attendance-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 25px;
-  animation: fadeUp 1.2s ease;
+.table-container {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
 }
 
-.attendance-table th,
-.attendance-table td {
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
   padding: 12px;
   text-align: center;
   border-bottom: 1px solid #d1fae5;
   color: #1e293b;
 }
 
-.attendance-table th {
+th {
   background: linear-gradient(135deg, #4ade80, #16a34a);
   color: white;
   text-transform: uppercase;
 }
 
-.attendance-table tr:nth-child(even) {
+tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.attendance-table tr:hover td {
+tr:hover td {
   background: #f0fff4;
-  transition: background 0.3s ease;
-}
-
-/* 🌿 Status Styles */
-.present {
-  color: #16a34a;
-  font-weight: 600;
-  text-shadow: 0 0 8px #bbf7d0;
-}
-
-.absent {
-  color: #dc2626;
-  font-weight: 600;
-  text-shadow: 0 0 8px #fecaca;
 }
 
 /* 🌿 Buttons */
-button,
-.present-btn,
-.absent-btn,
-.submit-btn {
+button {
   border: none;
   border-radius: 25px;
   padding: 8px 16px;
@@ -152,44 +127,44 @@ button,
   font-weight: 500;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-.present-btn {
+.resolve-btn {
   background: linear-gradient(135deg, #16a34a, #22c55e);
 }
 
-.absent-btn {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  margin-left: 8px;
-}
-
-.submit-btn {
-  background: linear-gradient(135deg, #15803d, #22c55e);
-  padding: 10px 25px;
-  font-weight: 600;
-  font-size: 1rem;
+button[disabled] {
+  background: gray;
+  cursor: not-allowed;
 }
 
 button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   opacity: 0.9;
 }
 
-/* 🌿 Submit Section */
-.submit-section {
-  text-align: center;
-  margin-top: 30px;
-  animation: fadeUp 1.4s ease;
+/* 🌿 Status */
+.resolved {
+  color: #16a34a;
+  font-weight: 600;
+}
+.pending {
+  color: #f59f00;
+  font-weight: 600;
 }
 
-/* 🌿 No Data */
-.no-data {
-  text-align: center;
-  font-style: italic;
-  color: #4b5563;
-  margin-top: 20px;
+/* 🌿 Toasts */
+.toast {
+  margin: 15px auto;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 500;
+  width: fit-content;
 }
+
+.toast.success { background: #16a34a; }
+.toast.error { background: #dc2626; }
 
 /* 🌿 Footer */
 .footer {
@@ -202,20 +177,16 @@ button:hover {
   position: fixed;
   bottom: 0;
   width: 100%;
-  backdrop-filter: blur(8px);
 }
 
 /* 🌿 Animations */
 @keyframes fadeIn {
-  from { opacity: 0; } 
-  to { opacity: 1; }
+  from { opacity: 0; } to { opacity: 1; }
 }
-
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes textGlow {
   from { text-shadow: 0 0 10px #4ade80; }
   to { text-shadow: 0 0 20px #22c55e; }

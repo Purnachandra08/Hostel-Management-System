@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ComplaintService } from '../../services/complaint.service';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-complaints',
@@ -9,25 +11,52 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './complaints.html',
   styleUrls: ['./complaints.css']
 })
-export class Complaints {
-  complaint = {
-    subject: '',
-    description: ''
-  };
-
+export class Complaints implements OnInit {
+  complaint = { subject: '', description: '' };
   complaintsList: any[] = [];
+  userId!: number;
 
-  submitComplaint() {
-    if (this.complaint.subject && this.complaint.description) {
-      this.complaintsList.push({
-        subject: this.complaint.subject,
-        description: this.complaint.description,
-        date: new Date()
-      });
-      alert('✅ Complaint Submitted Successfully!');
-      this.complaint = { subject: '', description: '' };
-    } else {
-      alert('⚠️ Please fill all fields before submitting.');
+  constructor(private complaintService: ComplaintService, private auth: Auth) {}
+
+  ngOnInit() {
+    const user = this.auth.getUser();
+    if (user) {
+      this.userId = user.id;
+      this.loadComplaints();
     }
+  }
+
+  // ✅ Load complaints from backend
+  loadComplaints() {
+    this.complaintService.getComplaintsByUser(this.userId).subscribe({
+      next: (data) => (this.complaintsList = data),
+      error: (err) => console.error('Error fetching complaints:', err)
+    });
+  }
+
+  // ✅ Submit new complaint
+  submitComplaint() {
+    if (!this.complaint.subject || !this.complaint.description) {
+      alert('⚠️ Please fill all fields before submitting.');
+      return;
+    }
+
+    const payload = {
+      subject: this.complaint.subject,
+      description: this.complaint.description,
+      userId: this.userId
+    };
+
+    this.complaintService.submitComplaint(payload).subscribe({
+      next: () => {
+        alert('✅ Complaint submitted successfully!');
+        this.complaint = { subject: '', description: '' };
+        this.loadComplaints(); // reload list
+      },
+      error: (err) => {
+        console.error('Error submitting complaint:', err);
+        alert('❌ Failed to submit complaint. Try again.');
+      }
+    });
   }
 }

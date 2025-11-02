@@ -1,28 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Warden } from '../../services/warden';
 
 @Component({
   selector: 'app-leave-approval',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './leave-approval.html',
   styleUrls: ['./leave-approval.css']
 })
-export class LeaveApproval {
+export class LeaveApproval implements OnInit {
+  leaveRequests: any[] = [];
+  loading = true;
+  message = '';
+  error = '';
 
-  // ✅ Add all required properties
-  leaveRequests = [
-    { id: 1, studentName: 'Ravi Kumar', date: '2025-10-20', reason: 'Medical', status: 'Pending' },
-    { id: 2, studentName: 'Anita Sharma', date: '2025-10-22', reason: 'Family Function', status: 'Approved' },
-    { id: 3, studentName: 'Rahul Verma', date: '2025-10-25', reason: 'Personal', status: 'Rejected' }
-  ];
+  constructor(private wardenService: Warden) {}
 
-  // ✅ Add required methods
-  approveLeave(request: any) {
-    request.status = 'Approved';
+  ngOnInit(): void {
+    this.loadLeaves();
   }
 
-  rejectLeave(request: any) {
-    request.status = 'Rejected';
+  // Load all leaves
+  loadLeaves(): void {
+    this.loading = true;
+    this.wardenService.getLeaves().subscribe({
+      next: (data) => {
+        this.leaveRequests = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.error = '❌ Failed to load leave requests.';
+        this.loading = false;
+      }
+    });
+  }
+
+  approve(id: number): void {
+    this.wardenService.approveLeave(id).subscribe({
+      next: () => {
+        this.message = '✅ Leave approved successfully!';
+        this.loadLeaves();
+        setTimeout(() => (this.message = ''), 3000);
+      },
+      error: () => {
+        this.error = '❌ Error approving leave.';
+        setTimeout(() => (this.error = ''), 3000);
+      }
+    });
+  }
+
+  reject(id: number): void {
+    this.wardenService.rejectLeave(id).subscribe({
+      next: () => {
+        this.message = '❌ Leave rejected successfully!';
+        this.loadLeaves();
+        setTimeout(() => (this.message = ''), 3000);
+      },
+      error: () => {
+        this.error = '❌ Error rejecting leave.';
+        setTimeout(() => (this.error = ''), 3000);
+      }
+    });
   }
 }

@@ -1,39 +1,64 @@
+<!-- 🌿 Navbar -->
+<nav class="navbar">
+  <div class="nav-logo">🏫 Hostel Manager</div>
+  <ul class="nav-links">
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/mark-attendance" class="active">Attendance</a></li>
+    <li><a href="/complaints">Complaints</a></li>
+    <li><a href="/leaves">Leaves</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
+
+<!-- 📋 Main Attendance Section -->
 <div class="attendance-container">
   <h2>📋 Mark Attendance</h2>
-  <p class="sub-title">Warden can mark attendance for all hostel students</p>
 
-  <table class="attendance-table">
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="alert error">{{ error }}</div>
+  <div *ngIf="message" class="alert success">{{ message }}</div>
+
+  <!-- Table Section -->
+  <table *ngIf="students.length && !loading" class="attendance-table">
     <thead>
       <tr>
         <th>ID</th>
         <th>Student Name</th>
-        <th>Room No</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
-
     <tbody>
-      <tr *ngFor="let student of students">
-        <td>{{ student.id }}</td>
-        <td>{{ student.name }}</td>
-        <td>{{ student.roomNo }}</td>
+      <tr *ngFor="let s of students">
+        <td>{{ s.id }}</td>
+        <td>{{ s.fullName || s.username }}</td>
         <td>
-          <span [ngClass]="{
-            present: student.status === 'Present',
-            absent: student.status === 'Absent',
-            pending: student.status === 'Pending'
-          }">
-            {{ student.status }}
+          <span
+            [ngClass]="{
+              present: getStatus(s.id) === 'PRESENT',
+              absent: getStatus(s.id) === 'ABSENT'
+            }"
+          >
+            {{ getStatus(s.id) }}
           </span>
         </td>
         <td>
-          <button class="btn present" (click)="markAttendance(student, 'Present')">Present</button>
-          <button class="btn absent" (click)="markAttendance(student, 'Absent')">Absent</button>
+          <button (click)="mark(s.id, 'PRESENT')" class="present-btn">✅ Present</button>
+          <button (click)="mark(s.id, 'ABSENT')" class="absent-btn">❌ Absent</button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <button class="submit-btn" (click)="submitAttendance()">Submit Attendance</button>
+  <!-- Submit Button -->
+  <div class="submit-section" *ngIf="students.length && !loading">
+    <button class="submit-btn" (click)="submitAttendance()">💾 Submit Attendance</button>
+  </div>
+
+  <p *ngIf="!students.length && !loading" class="no-data">No students found.</p>
 </div>
+
+<!-- 🌿 Footer -->
+<footer class="footer">
+  <p>© 2025 Hostel Management System | Designed by Purnachandra Mallick</p>
+</footer>

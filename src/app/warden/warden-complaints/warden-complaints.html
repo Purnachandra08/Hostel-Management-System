@@ -1,0 +1,70 @@
+<div class="warden-complaints-page fade-in">
+  <!-- 🌿 Navbar -->
+  <nav class="navbar">
+    <div class="logo">🏫 Hostel Warden Panel</div>
+    <ul class="nav-links">
+      <li><a routerLink="/warden" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li><a routerLink="/warden/mark-attendance" routerLinkActive="active">Mark Attendance</a></li>
+      <li><a routerLink="/warden/leave-approval" routerLinkActive="active">Approve Leaves</a></li>
+      <li><a routerLink="/warden/complaints" routerLinkActive="active">Complaints</a></li>
+      <li><a routerLink="/warden-login" class="logout-btn">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- 🌱 Main Content -->
+  <div class="content">
+    <h2>🗣 Student Complaints</h2>
+    <p>Review and manage complaints submitted by students.</p>
+
+    <!-- ✅ Toast Messages -->
+    <div *ngIf="message" class="toast success">{{ message }}</div>
+    <div *ngIf="error" class="toast error">{{ error }}</div>
+
+    <!-- ⏳ Loading -->
+    <div *ngIf="loading" class="loading">Loading complaints...</div>
+
+    <!-- 📋 Table -->
+    <div *ngIf="!loading && complaints.length > 0" class="table-container slide-up">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of complaints">
+            <td>{{ c.id }}</td>
+            <td>{{ c.user?.name }}</td>
+            <td>{{ c.subject }}</td>
+            <td>{{ c.description }}</td>
+            <td>{{ c.createdAt | date: 'mediumDate' }}</td>
+            <td [ngClass]="{'resolved': c.status === 'RESOLVED', 'pending': c.status !== 'RESOLVED'}">
+              {{ c.status }}
+            </td>
+            <td>
+              <button class="resolve-btn" (click)="markResolved(c.id)" [disabled]="c.status === 'RESOLVED'">
+                Mark Resolved ✅
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 🚫 No Data -->
+    <div *ngIf="!loading && !complaints.length" class="empty-state">
+      <p>🎉 No complaints found.</p>
+    </div>
+  </div>
+
+  <!-- 🌿 Footer -->
+  <footer class="footer">
+    <p>© 2025 Hostel Management System | Warden Panel</p>
+  </footer>
+</div>

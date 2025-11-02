@@ -1,45 +1,48 @@
+<!-- ================= Navbar ================= -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="logo">SmartHostel</div>
+    <div class="nav-links">
+      <a routerLink="/login" class="nav-btn login">Login</a>
+      <a routerLink="/register" class="nav-btn register">Register</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= Landing Page Content ================= -->
 <div class="landing-container">
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Welcome to SmartHostel</h1>
-      <p>Where technology meets comfort — simplifying hostel life for everyone.</p>
-      <button class="cta-btn">Explore More</button>
-    </div>
-    <div class="hero-image">
-      <img src="assets/hostel-room.jpg" alt="Hostel Room" />
+      <h1>Welcome to <span>SmartHostel</span></h1>
+      <p>
+        Smart, simple, and sustainable hostel management — connecting students, wardens, and admins in one smart ecosystem.
+      </p>
+      <a routerLink="/login" class="btn explore-btn">Get Started</a>
+
+      <div class="stats">
+        <div class="stat-box">
+          <h2>500+</h2>
+          <p>Students</p>
+        </div>
+        <div class="stat-box">
+          <h2>20+</h2>
+          <p>Hostels</p>
+        </div>
+        <div class="stat-box">
+          <h2>1200+</h2>
+          <p>Rooms</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- About Us Section -->
+  <!-- About Section -->
   <section class="about-us">
-    <h2>About Us</h2>
+    <h2>About SmartHostel</h2>
     <p>
-      At SmartHostel, we believe in transforming the traditional hostel experience into a
-      modern, efficient, and user-friendly ecosystem. Founded with the vision of bridging
-      the gap between students, hostel administrators, and staff, our platform brings
-      everything you need — all in one place.
-    </p>
-    <p>
-      Managing hostel tasks like room allocations, attendance, maintenance requests, and
-      payments often becomes stressful for both students and management. SmartHostel was
-      built to remove that friction. Our digital-first solution enables students to apply,
-      check status, and make payments seamlessly from anywhere. Admins can manage room
-      records, handle complaints, and track operations effortlessly using an intuitive
-      dashboard.
-    </p>
-    <p>
-      What makes SmartHostel unique is our focus on automation, transparency, and
-      simplicity. With features like real-time updates, secure data storage, and a clean
-      responsive interface, our goal is to make hostel management not just easier, but
-      smarter. We are continuously evolving — driven by student feedback, innovation, and
-      a passion for excellence.
-    </p>
-    <p>
-      Whether you’re a student looking for convenience or an administrator aiming for
-      better efficiency, SmartHostel is your go-to platform for a next-generation hostel
-      experience. Join us on this journey to redefine comfort, trust, and technology in
-      hostel living!
+      SmartHostel redefines hostel management with an intelligent, eco-friendly platform. 
+      From room allocation to digital maintenance tracking — everything happens seamlessly and efficiently.
     </p>
   </section>
 
@@ -54,3 +57,8 @@
     </div>
   </section>
 </div>
+
+<!-- ================= Footer ================= -->
+<footer class="footer">
+  <p>© 2025 SmartHostel | All Rights Reserved</p>
+</footer>

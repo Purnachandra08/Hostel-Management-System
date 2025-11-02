@@ -1,19 +1,62 @@
 <div class="warden-dashboard">
-  <h2>Welcome, {{ wardenName }} 👋</h2>
+  <!-- 🌿 Navbar -->
+  <nav class="navbar">
+    <div class="logo">🏫 Hostel Warden Dashboard</div>
+    <ul class="nav-links">
+      <li><a routerLink="/warden" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li><a routerLink="/warden/mark-attendance" routerLinkActive="active">Mark Attendance</a></li>
+      <li><a routerLink="/warden/leave-approval" routerLinkActive="active">Approve Leaves</a></li>
+      <li><a routerLink="/warden/complaints" routerLinkActive="active">View Complaints</a></li>
+      <li><a (click)="logout()" class="logout-btn">Logout</a></li>
+    </ul>
+  </nav>
 
-  <div class="summary">
-    <div class="card" *ngFor="let card of summaryCards" [style.background]="card.color">
-      <div class="icon">{{ card.icon }}</div>
-      <div class="info">
-        <h3>{{ card.title }}</h3>
+  <!-- 🧭 Dashboard Body -->
+  <div class="dashboard-content" *ngIf="!loading && !error">
+    <h2>Welcome, {{ wardenName }} 👋</h2>
+    <p>Manage daily hostel operations efficiently.</p>
+
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+      <div
+        class="card"
+        *ngFor="let card of summaryCards"
+        [style.borderTop]="'6px solid ' + card.color"
+      >
+        <h3>{{ card.icon }} {{ card.title }}</h3>
         <p>{{ card.value }}</p>
+      </div>
+    </div>
+
+    <!-- Quick Access Cards -->
+    <div class="card-container">
+      <div class="card clickable" (click)="goToAttendance()">
+        <h3>📋 Mark Attendance</h3>
+        <p>Record student attendance for today.</p>
+      </div>
+
+      <div class="card clickable" (click)="goToLeaveApproval()">
+        <h3>✅ Approve Leaves</h3>
+        <p>Review and approve student leave requests.</p>
+      </div>
+
+      <div class="card clickable" (click)="goToComplaints()">
+        <h3>🗣 View Complaints</h3>
+        <p>Check and resolve student complaints.</p>
       </div>
     </div>
   </div>
 
-  <div class="actions">
-    <a routerLink="/warden/mark-attendance" class="action-btn">📋 Mark Attendance</a>
-    <a routerLink="/warden/leave-approval" class="action-btn">✅ Approve Leaves</a>
-    <a routerLink="/warden/complaints" class="action-btn">🧾 View Complaints</a>
+  <!-- 🌿 Loading & Error States -->
+  <div *ngIf="loading" class="loading">
+    <p>⏳ Loading dashboard...</p>
   </div>
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- 🌱 Footer -->
+  <footer class="footer">
+    <p>© 2025 Hostel Management System | Warden Panel</p>
+  </footer>
 </div>

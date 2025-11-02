@@ -5,8 +5,8 @@ body {
   background: linear-gradient(to bottom right, #f4fff7, #d9f8e3, #b9f0cc);
   color: #1e2a23;
   overflow-x: hidden;
-  animation: fadeIn 1s ease-in-out;
   padding-top: 80px;
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* 🌿 Navbar */
@@ -19,16 +19,13 @@ body {
   z-index: 1000;
   backdrop-filter: blur(10px);
   animation: slideDown 0.8s ease;
-}
-
-.navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 60px;
 }
 
-.logo {
+.navbar h2 {
   font-size: 1.8rem;
   font-weight: 600;
   color: #28a745;
@@ -36,114 +33,110 @@ body {
   animation: fadeUp 1s ease;
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-btn {
+.navbar nav a {
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  padding: 10px 24px;
+  margin-left: 20px;
+  color: #14532d;
+  padding: 10px 20px;
   border-radius: 25px;
   transition: all 0.3s ease;
-  cursor: pointer;
-  color: #14532d;
 }
 
-.nav-btn:hover {
+.navbar nav a:hover,
+.navbar nav a.active {
   background: #eafff2;
   transform: scale(1.05);
 }
 
-.nav-btn.logout {
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  color: white;
-  box-shadow: 0 3px 10px rgba(34, 197, 94, 0.4);
-}
-
-.nav-btn.logout:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(34, 197, 94, 0.5);
-}
-
-/* 🌿 Dashboard Container */
-.dashboard-container {
-  padding: 100px 10%;
-  text-align: center;
-  animation: fadeUp 1.2s ease;
-}
-
-.welcome {
-  font-size: 2.2rem;
-  color: #14532d;
-  margin-bottom: 30px;
-  animation: textGlow 2.5s infinite alternate;
-}
-
-/* 🌿 Card Grid */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 25px;
-  margin-top: 20px;
-  animation: fadeIn 1.2s ease-in;
-}
-
-.card {
-  background: #ffffffd5;
+/* 🌿 Booking Form Container */
+.book-container {
+  max-width: 550px;
+  margin: 120px auto 80px auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
   border-radius: 20px;
-  padding: 30px;
-  text-decoration: none;
-  color: #1e2a23;
   box-shadow: 0 6px 20px rgba(52, 211, 153, 0.15);
+  animation: fadeUp 1s ease-in-out;
+  backdrop-filter: blur(12px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.book-container:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
 }
 
-.card h3 {
-  color: #166534;
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-}
-
-.card p {
-  color: #444;
-  font-size: 0.95rem;
-}
-
-/* 🌿 Notifications */
-.notifications {
-  margin-top: 50px;
-  text-align: left;
-  background: #ffffffcc;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(52, 211, 153, 0.15);
-  animation: fadeIn 1.3s ease-in;
-}
-
-.notifications h3 {
+.book-container h2 {
+  text-align: center;
   color: #14532d;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  animation: textGlow 2.5s infinite alternate;
 }
 
-.notifications ul {
-  list-style: none;
-  padding: 0;
-}
-
-.notifications li {
-  padding: 8px 0;
-  border-bottom: 1px solid #d1fae5;
+/* 🌿 Form Elements */
+.form-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 18px;
+}
+
+label {
+  font-weight: 600;
+  color: #166534;
+}
+
+select,
+input[type="date"] {
+  padding: 12px 14px;
+  border: 1px solid #c0eacb;
+  border-radius: 12px;
+  outline: none;
   font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 3px rgba(34, 197, 94, 0.1);
+}
+
+select:focus,
+input[type="date"]:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+}
+
+/* 🌿 Button */
+button {
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 12px rgba(34, 197, 94, 0.4);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 18px rgba(34, 197, 94, 0.5);
+}
+
+/* 🌿 Message Text */
+.message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #14532d;
+  background: #eafff2;
+  border-radius: 8px;
+  padding: 10px;
+  animation: fadeIn 1s ease;
 }
 
 /* 🌿 Footer */

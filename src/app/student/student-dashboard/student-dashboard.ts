@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -10,10 +11,16 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./student-dashboard.css']
 })
 export class StudentDashboard {
-  studentName = 'John Doe';
+  studentName = localStorage.getItem('authUsername') || 'Student';
   notifications = [
-    { message: 'Your leave request has been approved!', date: '2025-10-26' },
-    { message: 'Mess fee due this week.', date: '2025-10-25' },
-    { message: 'Room inspection scheduled for Friday.', date: '2025-10-24' }
+    { message: 'Warden approved your leave request', date: '2025-10-30' },
+    { message: 'Room maintenance scheduled for tomorrow', date: '2025-10-31' }
   ];
+
+  constructor(private auth: Auth, private router: Router) {}
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 }
