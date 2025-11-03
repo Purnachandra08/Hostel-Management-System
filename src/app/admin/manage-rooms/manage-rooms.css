@@ -1,137 +1,301 @@
-* {
+/* 🌿 General Layout */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #f4fff7, #d9f8e3, #b9f0cc);
+  color: #1e2a23;
+  overflow-x: hidden;
+  animation: fadeIn 1s ease-in-out;
+  padding-top: 90px; /* space for navbar */
+}
+
+/* 🌿 Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  animation: slideDown 0.8s ease;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #28a745;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
-.rooms-container {
-  padding: 50px;
-  background: linear-gradient(135deg, #243b55, #141e30);
-  color: white;
-  min-height: 100vh;
+.nav-links a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: #14532d;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #ffdd59;
+.nav-links a:hover {
+  background: #eafff2;
+  transform: scale(1.05);
 }
 
-.subtitle {
-  opacity: 0.8;
-  margin-bottom: 40px;
+.nav-links .active {
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
 }
 
-/* Add Room Form */
-.add-room-form {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 25px;
-  border-radius: 15px;
-  margin-bottom: 40px;
-  backdrop-filter: blur(10px);
+/* 🌿 Header */
+.header {
+  text-align: center;
+  padding: 40px 0 20px;
+  color: #14532d;
+  animation: fadeUp 1s ease;
 }
 
-.add-room-form h2 {
-  margin-bottom: 15px;
-  color: #ffdd59;
+.header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  animation: textGlow 2.5s infinite alternate;
 }
 
-.form-fields {
+/* 🌿 Main Content */
+.content {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  justify-content: center;
+  gap: 40px;
+  padding: 30px 5%;
+  animation: fadeUp 1s ease;
 }
 
-input {
-  padding: 10px 15px;
-  border: none;
+/* 🌿 Add Room Form */
+.form-container {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 5px 15px rgba(52, 211, 153, 0.15);
+  padding: 25px 30px;
+  width: 350px;
+  min-width: 300px;
+  animation: fadeUp 1s ease;
+}
+
+.form-container h2 {
+  color: #166534;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.room-form .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #14532d;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
   border-radius: 10px;
-  outline: none;
-  width: 200px;
+  border: 1px solid #a7f3d0;
+  background: #f0fff4;
   font-size: 1rem;
+  transition: 0.3s;
 }
 
-button {
-  background: #ffdd59;
-  color: black;
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.3);
+}
+
+.add-btn {
+  width: 100%;
+  padding: 12px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 25px;
+  background: linear-gradient(to right, #34d399, #10b981);
+  color: #fff;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
-button:hover {
-  background: #ffe57f;
+.add-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(to right, #10b981, #059669);
 }
 
-/* Room List Table */
-.rooms-list {
-  background: rgba(255, 255, 255, 0.1);
+/* 🌿 Room Table */
+.table-container {
+  flex: 1;
+  min-width: 600px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 5px 15px rgba(52, 211, 153, 0.15);
   padding: 25px;
-  border-radius: 15px;
-  backdrop-filter: blur(8px);
+  animation: fadeUp 1s ease;
 }
 
-.rooms-list h2 {
-  margin-bottom: 20px;
-  color: #ffdd59;
+.table-container h2 {
+  color: #166534;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
-table {
+.room-table {
   width: 100%;
   border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
-th, td {
+.room-table th,
+.room-table td {
+  padding: 12px 15px;
   text-align: center;
-  padding: 15px;
+  border-bottom: 1px solid #e6fffa;
 }
 
-th {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.status {
-  padding: 5px 10px;
-  border-radius: 8px;
-  background: #4cd137;
-  color: black;
+.room-table th {
+  background: #d1fae5;
+  color: #065f46;
   font-weight: 600;
 }
 
-.status.full {
-  background: #e84118;
+.room-table tr:hover {
+  background: #f0fdf4;
+}
+
+.available {
+  color: #059669;
+  font-weight: 600;
+}
+
+.occupied {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.delete-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  background: #f87171;
   color: white;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.delete {
-  background: #ff4d4d;
-  color: white;
+.delete-btn:hover {
+  background: #dc2626;
+  transform: scale(1.05);
 }
 
-.delete:hover {
-  background: #ff6b6b;
+.no-data {
+  text-align: center;
+  color: #6b7280;
+  padding: 20px;
 }
 
-/* Responsive */
-@media (max-width: 800px) {
-  .form-fields {
+/* 🌿 Footer */
+.footer {
+  background: rgba(255, 255, 255, 0.9);
+  color: #14532d;
+  text-align: center;
+  padding: 15px;
+  width: 100%;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.08);
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  animation: slideUp 1s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.footer p {
+  margin: 0;
+  animation: fadeGlow 2.5s infinite alternate;
+}
+
+/* 🌿 Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-80px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(60px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px #4ade80; }
+  to { text-shadow: 0 0 20px #22c55e; }
+}
+
+@keyframes fadeGlow {
+  from { text-shadow: 0 0 10px #4ade80; }
+  to { text-shadow: 0 0 20px #22c55e; }
+}
+
+/* 🌿 Responsive Design */
+@media (max-width: 900px) {
+  .content {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
-  input, button {
-    width: 100%;
+  .form-container, .table-container {
+    width: 90%;
   }
 
-  table {
+  .room-table th, .room-table td {
+    padding: 10px;
     font-size: 0.9rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 25px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 10px;
   }
 }

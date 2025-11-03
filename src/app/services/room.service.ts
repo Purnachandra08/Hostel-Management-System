@@ -8,8 +8,23 @@ export class RoomService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ Fetch available rooms (status = AVAILABLE)
+  // ✅ Get all rooms
+  getAllRooms(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
+  }
+
+  // ✅ Get only available rooms
   getAvailableRooms(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/available`);
+  }
+
+  // ✅ Add a new room
+  addRoom(room: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl, room);
+  }
+
+  // ✅ Delete a room by ID
+  deleteRoom(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

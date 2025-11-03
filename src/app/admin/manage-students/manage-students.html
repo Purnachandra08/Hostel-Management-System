@@ -1,47 +1,63 @@
-<div class="manage-students-container">
-  <h2>Manage Students</h2>
+<!-- 🌿 Header -->
+<header class="navbar">
+  <div class="logo">🏫 Hostel Admin</div>
+  <nav class="nav-links">
+    <a href="/admin-dashboard">Dashboard</a>
+    <a href="/manage-students" class="active">Manage Students</a>
+    <a href="/manage-rooms">Manage Rooms</a>
+    <a href="/view-bookings">Bookings</a>
+    <a href="/view-complaints">Complaints</a>
+  </nav>
+</header>
 
-  <div class="actions">
-    <input type="text" placeholder="Search student..." class="search-box" />
-    <button class="add-btn">+ Add Student</button>
-  </div>
+<!-- 🌿 Page Content -->
+<div class="admin-container">
+  <section class="dashboard">
+    <h1>👨‍🎓 Manage Students</h1>
+    <p class="welcome">View, search, and manage student records efficiently</p>
 
-  <table class="students-table">
-    <thead>
-      <tr>
-        <th>Roll No</th>
-        <th>Name</th>
-        <th>Room No</th>
-        <th>Department</th>
-        <th>Contact</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="searchStudents()"
+        placeholder="Search students by name or email..."
+      />
+      <button class="clear-btn" (click)="clearSearch()">Clear</button>
+    </div>
 
-    <tbody>
-      <tr>
-        <td>101</td>
-        <td>Rahul Sharma</td>
-        <td>12A</td>
-        <td>CSE</td>
-        <td>9876543210</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
+    <!-- Student Table -->
+    <div class="table-container" *ngIf="filteredStudents.length > 0">
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of filteredStudents">
+            <td>{{ student.id }}</td>
+            <td>{{ student.username }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.roles?.[0]?.name || 'N/A' }}</td>
+            <td>
+              <button class="delete-btn" (click)="deleteStudent(student.id)">🗑 Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <tr>
-        <td>102</td>
-        <td>Pooja Patel</td>
-        <td>14B</td>
-        <td>ECE</td>
-        <td>8765432109</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <p *ngIf="filteredStudents.length === 0" class="loading">⏳ No students found.</p>
+  </section>
 </div>
+
+<!-- 🌿 Footer -->
+<footer class="footer">
+  <p>© {{ currentYear() }} Hostel Management System | Admin Dashboard</p>
+</footer>

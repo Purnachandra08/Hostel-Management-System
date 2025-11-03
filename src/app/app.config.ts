@@ -70,7 +70,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: AdminDashboard },
       { path: 'manage-rooms', component: ManageRooms },
-      { path: 'manage-students', component: ManageStudents }
+      { path: 'manage-students', component: ManageStudents },
     ]
   },
 

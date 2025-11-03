@@ -1,17 +1,11 @@
-/* 🌿 General Page Layout */
+/* 🌿 General Layout */
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: linear-gradient(to bottom right, #f4fff7, #d9f8e3, #b9f0cc);
   color: #1e2a23;
   overflow-x: hidden;
   animation: fadeIn 1s ease-in-out;
-}
-
-.attendance-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 /* 🌿 Navbar */
@@ -73,115 +67,109 @@ body {
   box-shadow: 0 5px 15px rgba(34, 197, 94, 0.5);
 }
 
-/* 🌿 Main Content */
-.content {
-  margin-top: 110px;
-  padding: 40px 8%;
+/* 🌿 Dashboard Content */
+.dashboard-content {
+  margin-top: 100px;
+  padding: 40px 10%;
   text-align: center;
   animation: fadeUp 1s ease;
 }
 
-.content h2 {
+.dashboard-content h2 {
   font-size: 2rem;
   color: #14532d;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   animation: textGlow 2.5s infinite alternate;
 }
 
-.content p {
-  color: #374151;
-  font-size: 1rem;
-  margin-bottom: 30px;
+.dashboard-content p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
 }
 
-/* 🌿 Attendance Table */
-.table-container {
-  background: rgba(255, 255, 255, 0.9);
+/* 🌿 Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-bottom: 60px;
+}
+
+.summary-cards .card {
+  background: #ffffffd5;
   border-radius: 16px;
   padding: 20px;
-  width: 90%;
-  margin: 0 auto 60px;
   box-shadow: 0 5px 15px rgba(52, 211, 153, 0.15);
-  animation: fadeUp 1.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.summary-cards .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
 }
 
-th, td {
-  padding: 14px;
-  text-align: center;
-  border-bottom: 1px solid #d1fae5;
-  color: #1e293b;
+.summary-cards h3 {
+  color: #166534;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
 }
 
-th {
-  background: linear-gradient(135deg, #4ade80, #16a34a);
-  color: white;
-  text-transform: uppercase;
+.summary-cards p {
+  font-size: 1.2rem;
+  color: #1e2a23;
   font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
-tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.6);
+/* 🌿 Quick Access Section */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
 }
 
-tr:hover td {
-  background: #f0fff4;
-  transition: background 0.3s ease;
-}
-
-/* 🌿 Buttons */
-button {
-  border: none;
-  border-radius: 25px;
-  padding: 8px 16px;
-  font-weight: 500;
+.card-container .card {
+  background: #ffffffd5;
+  border-radius: 18px;
+  padding: 28px;
   cursor: pointer;
-  transition: 0.3s;
+  text-align: left;
+  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.15);
+  transition: all 0.3s ease;
+}
+
+.card-container .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.25);
+}
+
+.card-container .card h3 {
+  font-size: 1.3rem;
+  color: #14532d;
+  margin-bottom: 10px;
+}
+
+.card-container .card p {
   font-size: 0.95rem;
+  color: #444;
 }
 
-.present-btn {
-  background: linear-gradient(135deg, #16a34a, #22c55e);
-  color: white;
+/* 🌿 Loading & Error */
+.loading,
+.error {
+  text-align: center;
+  margin-top: 120px;
+  font-size: 1.1rem;
 }
 
-.absent-btn {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
+.loading p {
+  color: #166534;
 }
 
-.submit-btn {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-  padding: 10px 22px;
-  margin-top: 25px;
+.error p {
+  color: #e74c3c;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
-
-button:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-/* 🌿 Toast / Alerts */
-.toast {
-  margin: 15px auto;
-  padding: 10px 20px;
-  border-radius: 25px;
-  color: white;
-  font-weight: 500;
-  width: fit-content;
-  animation: fadeUp 0.8s ease;
-}
-
-.toast.success { background: #16a34a; }
-.toast.error { background: #dc2626; }
 
 /* 🌿 Footer */
 .footer {
@@ -189,18 +177,19 @@ button:hover {
   color: #14532d;
   text-align: center;
   padding: 15px;
-  font-size: 0.9rem;
-  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.08);
   position: fixed;
   bottom: 0;
   width: 100%;
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.08);
+  font-size: 0.9rem;
   backdrop-filter: blur(10px);
   animation: slideUp 1s ease;
 }
 
 /* 🌿 Animations */
 @keyframes fadeIn {
-  from { opacity: 0; } to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes fadeUp {
@@ -236,17 +225,12 @@ button:hover {
     gap: 10px;
   }
 
-  .content {
+  .dashboard-content {
     padding: 30px 5%;
   }
 
-  .table-container {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .footer {
-    font-size: 0.8rem;
-    padding: 10px;
+  .summary-cards,
+  .card-container {
+    grid-template-columns: 1fr;
   }
 }
