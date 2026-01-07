@@ -1,15 +1,37 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()">
-    <input type="text" [(ngModel)]="credentials.username" name="username" placeholder="Username" required />
-    <input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
+<div class="login-page">
+  <div class="login-card">
+    <h2>Welcome Back 👋</h2>
+    <p class="subtitle">Login to SmartHostel</p>
 
-  <p class="message error" *ngIf="error">{{ error }}</p>
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input
+          type="text"
+          [(ngModel)]="credentials.username"
+          name="username"
+          placeholder="Username"
+          required
+        />
+      </div>
 
-  <p class="register-link">
-    Don’t have an account?
-    <a (click)="goToRegister()" class="register-text">Register here</a>
-  </p>
+      <div class="input-group">
+        <input
+          type="password"
+          [(ngModel)]="credentials.password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <p class="message error" *ngIf="error">{{ error }}</p>
+
+    <p class="register-link">
+      Don’t have an account?
+      <a (click)="goToRegister()" class="register-text">Register here</a>
+    </p>
+  </div>
 </div>
