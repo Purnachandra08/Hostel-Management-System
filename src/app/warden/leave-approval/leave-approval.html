@@ -1,17 +1,20 @@
 <div class="leave-approval-page">
+  <!-- 🌿 Navbar -->
   <nav class="navbar">
     <div class="logo">🏫 Hostel Warden Panel</div>
     <ul class="nav-links">
       <li><a routerLink="/warden" routerLinkActive="active">Home</a></li>
-      <li><a routerLink="/warden/mark-attendance" routerLinkActive="active">Mark Attendance</a></li>
-      <li><a routerLink="/warden/leave-approval" routerLinkActive="active">Approve Leaves</a></li>
-      <li><a routerLink="/warden/complaints" routerLinkActive="active">Complaints</a></li>
+      <li><a routerLink="/warden/mark-attendance">Mark Attendance</a></li>
+      <li><a routerLink="/warden/leave-approval" class="active">Approve Leaves</a></li>
+      <li><a routerLink="/warden/complaints">Complaints</a></li>
       <li><a routerLink="/warden-login" class="logout-btn">Logout</a></li>
     </ul>
   </nav>
 
+  <!-- 🌿 Content -->
   <div class="content">
     <h2>📄 Leave Approval Requests</h2>
+
     <div *ngIf="message" class="toast success">{{ message }}</div>
     <div *ngIf="error" class="toast error">{{ error }}</div>
 
@@ -19,15 +22,16 @@
       <table>
         <thead>
           <tr>
-            <th>Student Name</th>
+            <th>Student</th>
             <th>Room</th>
             <th>From</th>
             <th>To</th>
             <th>Reason</th>
             <th>Status</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           <tr *ngFor="let leave of leaveRequests">
             <td>{{ leave.studentName }}</td>
@@ -35,10 +39,39 @@
             <td>{{ leave.startDate }}</td>
             <td>{{ leave.endDate }}</td>
             <td>{{ leave.reason }}</td>
-            <td>{{ leave.status }}</td>
             <td>
-              <button class="approve-btn" (click)="approve(leave.id)">Approve ✅</button>
-              <button class="reject-btn" (click)="reject(leave.id)">Reject ❌</button>
+              <span class="status-badge" [class.approved]="leave.status==='APPROVED'"
+                    [class.rejected]="leave.status==='REJECTED'">
+                {{ leave.status }}
+              </span>
+            </td>
+            <td class="action-col">
+              <button
+                *ngIf="leave.status === 'PENDING'"
+                class="approve-btn"
+                (click)="approve(leave)">
+                Approve ✅
+              </button>
+
+              <button
+                *ngIf="leave.status === 'PENDING'"
+                class="reject-btn"
+                (click)="reject(leave.id)">
+                Reject ❌
+              </button>
+
+              <button
+                *ngIf="leave.status === 'APPROVED'"
+                class="pdf-btn"
+                (click)="downloadGatePass(leave)">
+                Download PDF 📄
+              </button>
+
+              <button
+                class="delete-btn"
+                (click)="deleteLeave(leave.id)">
+                Delete 🗑️
+              </button>
             </td>
           </tr>
         </tbody>
@@ -46,12 +79,13 @@
     </div>
 
     <div *ngIf="!loading && leaveRequests.length === 0" class="empty-state">
-      <p>🎉 No pending leave requests right now.</p>
+      🎉 No leave requests found.
     </div>
 
     <div *ngIf="loading" class="loading">Loading leave requests...</div>
   </div>
 
+  <!-- 🌿 Footer -->
   <footer class="footer">
     <p>© 2025 Hostel Management System | Warden Panel</p>
   </footer>

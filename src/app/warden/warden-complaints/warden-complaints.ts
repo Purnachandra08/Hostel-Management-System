@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // ✅ REQUIRED FOR ngModel
 
 @Component({
   selector: 'app-warden-complaints',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule   // ✅ ADD THIS
+  ],
   templateUrl: './warden-complaints.html',
   styleUrls: ['./warden-complaints.css']
 })
@@ -29,7 +34,8 @@ export class WardenComplaints implements OnInit {
     this.loading = true;
     this.http.get<any[]>(`${this.baseUrl}/all`).subscribe({
       next: (res) => {
-        this.complaints = res;
+        // ensure remark field exists
+        this.complaints = res.map(c => ({ ...c, remark: c.remark || '' }));
         this.loading = false;
       },
       error: () => {
@@ -39,9 +45,12 @@ export class WardenComplaints implements OnInit {
     });
   }
 
-  // ✅ Mark a complaint as resolved
-  markResolved(id: number): void {
-    this.http.put(`${this.baseUrl}/update-status/${id}?status=RESOLVED`, {}).subscribe({
+  // ✅ Mark a complaint as resolved (with remark)
+  markResolved(id: number, remark: string): void {
+    this.http.put(
+      `${this.baseUrl}/update-status/${id}?status=RESOLVED`,
+      { remark } // ✅ send remark to backend
+    ).subscribe({
       next: () => {
         this.message = '✅ Complaint marked as resolved!';
         this.fetchComplaints();

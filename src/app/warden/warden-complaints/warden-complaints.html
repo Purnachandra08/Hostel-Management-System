@@ -3,7 +3,9 @@
   <nav class="navbar">
     <div class="logo">🏫 Hostel Warden Panel</div>
     <ul class="nav-links">
-      <li><a routerLink="/warden" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li>
+        <a routerLink="/warden" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      </li>
       <li><a routerLink="/warden/mark-attendance" routerLinkActive="active">Mark Attendance</a></li>
       <li><a routerLink="/warden/leave-approval" routerLinkActive="active">Approve Leaves</a></li>
       <li><a routerLink="/warden/complaints" routerLinkActive="active">Complaints</a></li>
@@ -14,14 +16,14 @@
   <!-- 🌱 Main Content -->
   <div class="content">
     <h2>🗣 Student Complaints</h2>
-    <p>Review and manage complaints submitted by students.</p>
+    <p>Review, remark, and resolve complaints submitted by students.</p>
 
     <!-- ✅ Toast Messages -->
     <div *ngIf="message" class="toast success">{{ message }}</div>
     <div *ngIf="error" class="toast error">{{ error }}</div>
 
     <!-- ⏳ Loading -->
-    <div *ngIf="loading" class="loading">Loading complaints...</div>
+    <div *ngIf="loading" class="loading">⏳ Loading complaints...</div>
 
     <!-- 📋 Table -->
     <div *ngIf="!loading && complaints.length > 0" class="table-container slide-up">
@@ -29,11 +31,12 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Student Name</th>
+            <th>Student</th>
             <th>Subject</th>
             <th>Description</th>
             <th>Date</th>
             <th>Status</th>
+            <th>Remark</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -43,13 +46,36 @@
             <td>{{ c.user?.name }}</td>
             <td>{{ c.subject }}</td>
             <td>{{ c.description }}</td>
-            <td>{{ c.createdAt | date: 'mediumDate' }}</td>
-            <td [ngClass]="{'resolved': c.status === 'RESOLVED', 'pending': c.status !== 'RESOLVED'}">
+            <td>{{ c.createdAt | date:'mediumDate' }}</td>
+
+            <td
+              class="status"
+              [ngClass]="{
+                resolved: c.status === 'RESOLVED',
+                pending: c.status !== 'RESOLVED'
+              }"
+            >
               {{ c.status }}
             </td>
+
+            <!-- 📝 Remark -->
             <td>
-              <button class="resolve-btn" (click)="markResolved(c.id)" [disabled]="c.status === 'RESOLVED'">
-                Mark Resolved ✅
+              <textarea
+                class="remark-input"
+                [(ngModel)]="c.remark"
+                placeholder="Add remark..."
+                [disabled]="c.status === 'RESOLVED'"
+              ></textarea>
+            </td>
+
+            <!-- ✅ Action -->
+            <td>
+              <button
+                class="resolve-btn"
+                (click)="markResolved(c.id, c.remark)"
+                [disabled]="c.status === 'RESOLVED'"
+              >
+                Resolve ✅
               </button>
             </td>
           </tr>
@@ -59,7 +85,7 @@
 
     <!-- 🚫 No Data -->
     <div *ngIf="!loading && !complaints.length" class="empty-state">
-      <p>🎉 No complaints found.</p>
+      <p>🎉 No complaints available.</p>
     </div>
   </div>
 
