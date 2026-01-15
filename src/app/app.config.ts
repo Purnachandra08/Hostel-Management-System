@@ -24,6 +24,8 @@ import { WardenComplaints } from './warden/warden-complaints/warden-complaints';
 import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
 import { ManageRooms } from './admin/manage-rooms/manage-rooms';
 import { ManageStudents } from './admin/manage-students/manage-students';
+import { ManageWardens } from './admin/manage-wardens/manage-wardens';
+
 
 // ✅ Guards
 import { studentGuard, wardenGuard, adminGuard } from './guards';
@@ -64,15 +66,16 @@ export const routes: Routes = [
   },
 
   // 🧑‍💼 Admin Routes
-  {
-    path: 'admin',
-    canActivate: [adminGuard],
-    children: [
-      { path: '', component: AdminDashboard },
-      { path: 'manage-rooms', component: ManageRooms },
-      { path: 'manage-students', component: ManageStudents },
-    ]
-  },
+{
+  path: 'admin',
+  canActivate: [adminGuard],
+  children: [
+    { path: '', component: AdminDashboard },
+    { path: 'manage-rooms', component: ManageRooms },
+    { path: 'manage-students', component: ManageStudents },
+    { path: 'manage-wardens', component: ManageWardens } // ✅ ADDED
+  ]
+},
 
   // 🚫 Wildcard Route
   { path: '**', redirectTo: 'login' }

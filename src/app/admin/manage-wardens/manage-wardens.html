@@ -1,0 +1,77 @@
+<div class="warden-container">
+
+  <!-- 🌿 Page Header -->
+  <div class="page-header">
+    <h2>👮 Manage Wardens</h2>
+    <p>Add, view, and manage hostel wardens</p>
+  </div>
+
+  <!-- 🌿 Add Warden Form -->
+  <div class="form-card">
+    <h3>Add New Warden</h3>
+
+    <form (ngSubmit)="addWarden()">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Warden Name"
+          [(ngModel)]="newWarden.name"
+          name="name"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="newWarden.email"
+          name="email"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Assigned Hostel"
+          [(ngModel)]="newWarden.hostel"
+          name="hostel"
+          required
+        />
+      </div>
+
+      <button type="submit">➕ Add Warden</button>
+    </form>
+  </div>
+
+  <!-- 🌿 Wardens Table -->
+  <div class="table-card">
+    <h3>Warden List</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Hostel</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let warden of wardens; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ warden.name }}</td>
+          <td>{{ warden.email }}</td>
+          <td>{{ warden.hostel }}</td>
+          <td>
+            <button class="delete-btn" (click)="deleteWarden(i)">
+              ❌ Remove
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="wardens.length === 0">
+          <td colspan="5" class="empty">No wardens added yet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
